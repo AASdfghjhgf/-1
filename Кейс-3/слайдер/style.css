@@ -20,13 +20,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Важно для предотвращения вылезания изображения */
+    overflow: hidden; 
 }
 
 .image-container img {
     width: 100%;
-    height: 100%;  /* или height: auto; если изображение не должно быть обрезано */
-    object-fit: cover; /*или object-fit: contain; в зависимости от желаемого поведения*/
+    height: 100%;  
+    object-fit: cover; 
 }
 
 

@@ -1,4 +1,4 @@
-const images = ["image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg", "image5.jpg"]; //Замените на имена ваших изображений
+const images = ["image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg", "image5.jpg"];
 let currentIndex = 0;
 
 const sliderImage = document.getElementById("slider-image");
@@ -21,4 +21,4 @@ prevBtn.addEventListener("click", () => {
     updateImage();
 });
 
-updateImage(); // Инициализация
+updateImage();

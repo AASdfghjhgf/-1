@@ -94,7 +94,7 @@
         return;
       }
 
-        var date = new Date(год, месяц - 1, день); // Месяцы в JavaScript начинаются с 0
+        var date = new Date(год, месяц - 1, день); 
         var dayOfWeek = date.toLocaleDateString('ru-RU', { weekday: 'long' });
 
         document.getElementById("результат").innerHTML = "День недели: " + dayOfWeek;
