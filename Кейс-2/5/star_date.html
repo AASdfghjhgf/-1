@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Дата рождения звёздочками (пастельные тона)</title>
+  <style>
+    body {
+      font-family: monospace;
+      background-color: #f0f0e0; 
+      color: #8b4513; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+      background-color: #fffaf0; 
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #a0522d; 
+    }
+
+    input[type="number"] {
+      width: 50px;
+      padding: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #d2b48c; 
+      border-radius: 4px;
+      box-sizing: border-box;
+      background-color: #fff; 
+      color: #8b4513; 
+    }
+
+    button {
+      background-color: #d2b48c; 
+      color: #fff; 
+      padding: 5px 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #c0a379; 
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Дата рождения</h1>
+
+    <label for="день">День:</label>
+    <input type="number" id="день" name="день" min="1" max="31"><br>
+
+    <label for="месяц">Месяц:</label>
+    <input type="number" id="месяц" name="месяц" min="1" max="12"><br>
+
+    <label for="год">Год:</label>
+    <input type="number" id="год" name="год"><br>
+
+    <button onclick="показатьДатуЗвездочками()">Показать</button>
+  </div>
+
+  <script>
+    const digits = [
+      ["***", "* *", "* *", "* *", "***"], // 0
+      ["  *", "  *", "  *", "  *", "  *"], // 1
+      ["***", "  *", "***", "*  ", "***"], // 2
+      ["***", "  *", "***", "  *", "***"], // 3
+      ["* *", "* *", "***", "  *", "  *"], // 4
+      ["***", "*  ", "***", "  *", "***"], // 5
+      ["***", "*  ", "***", "* *", "***"], // 6
+      ["***", "  *", "  *", "  *", "  *"], // 7
+      ["***", "* *", "***", "* *", "***"], // 8
+      ["***", "* *", "***", "  *", "***"]  // 9
+    ];
+
+    function drawDigit(digit) {
+      if (digit < 0 || digit > 9) {
+        return ["     ", "     ", "     ", "     ", "     "];
+      }
+      return digits[digit];
+    }
+
+    function показатьДатуЗвездочками() {
+      var день = document.getElementById("день").value;
+      var месяц = document.getElementById("месяц").value;
+      var год = document.getElementById("год").value;
+
+      if (день === "" || месяц === "" || год === "") {
+        alert("Пожалуйста, заполните все поля.");
+        return;
+      }
+
+      день = parseInt(день);
+      месяц = parseInt(месяц);
+      год = parseInt(год);
+
+      if (isNaN(день) || isNaN(месяц) || isNaN(год) || день < 1 || день > 31 || месяц < 1 || месяц > 12) {
+        alert("Пожалуйста, введите корректные значения дня и месяца.");
+        return;
+      }
+
+      const formattedDay = String(день).padStart(2, '0');
+      const formattedMonth = String(месяц).padStart(2, '0');
+      const formattedYear = String(год);
+
+      const dateString = formattedDay + formattedMonth + formattedYear;
+      const dateDigits = dateString.split('').map(Number);
+
+      const starDigits = dateDigits.map(drawDigit);
+
+      const rows = [];
+      for (let i = 0; i < 5; i++) {
+        let row = "";
+        for (let j = 0; j < starDigits.length; j++) {
+          row += starDigits[j][i] + " ";
+        }
+        rows.push(row);
+      }
+
+      console.log(rows.join('\n'));
+    }
+  </script>
+
+</body>
+</html>
+

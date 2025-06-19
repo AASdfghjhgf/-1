@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Определение дня недели</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="number"] {
+      width: 150px;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #3e8e41;
+    }
+
+    #результат {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Введите вашу дату рождения</h1>
+
+    <label for="день">День:</label>
+    <input type="number" id="день" name="день" min="1" max="31"><br>
+
+    <label for="месяц">Месяц:</label>
+    <input type="number" id="месяц" name="месяц" min="1" max="12"><br>
+
+    <label for="год">Год:</label>
+    <input type="number" id="год" name="год"><br>
+
+    <button onclick="определитьДеньНедели()">Определить день недели</button>
+
+    <p id="результат"></p>
+  </div>
+
+  <script>
+    function определитьДеньНедели() {
+      var день = document.getElementById("день").value;
+      var месяц = document.getElementById("месяц").value;
+      var год = document.getElementById("год").value;
+
+      if (день === "" || месяц === "" || год === "") {
+        document.getElementById("результат").innerHTML = "Пожалуйста, заполните все поля.";
+        return;
+      }
+
+      день = parseInt(день);
+      месяц = parseInt(месяц);
+      год = parseInt(год);
+
+      if (isNaN(день) || isNaN(месяц) || isNaN(год) || день < 1 || день > 31 || месяц < 1 || месяц > 12) {
+        document.getElementById("результат").innerHTML = "Пожалуйста, введите корректные значения дня и месяца.";
+        return;
+      }
+
+        var date = new Date(год, месяц - 1, день); // Месяцы в JavaScript начинаются с 0
+        var dayOfWeek = date.toLocaleDateString('ru-RU', { weekday: 'long' });
+
+        document.getElementById("результат").innerHTML = "День недели: " + dayOfWeek;
+    }
+  </script>
+
+</body>
+</html>

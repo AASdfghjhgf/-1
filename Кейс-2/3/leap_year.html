@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Определение високосного года</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="number"] {
+      width: 150px;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #3e8e41;
+    }
+
+    #результат {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Определение високосного года</h1>
+
+    <label for="год">Введите год:</label>
+    <input type="number" id="год" name="год"><br>
+
+    <button onclick="определитьВисокосный()">Определить</button>
+
+    <p id="результат"></p>
+  </div>
+
+  <script>
+    function определитьВисокосный() {
+      var год = document.getElementById("год").value;
+
+      if (год === "") {
+        document.getElementById("результат").innerHTML = "Пожалуйста, введите год.";
+        return;
+      }
+
+      год = parseInt(год);
+
+      if (isNaN(год)) {
+        document.getElementById("результат").innerHTML = "Пожалуйста, введите корректное числовое значение для года.";
+        return;
+      }
+
+      if (год < 0) {
+          document.getElementById("результат").innerHTML = "Год не может быть отрицательным";
+          return;
+      }
+
+      var високосный = ((год % 4 == 0) && (год % 100 != 0)) || (год % 400 == 0);
+
+      if (високосный) {
+        document.getElementById("результат").innerHTML = год + " год - високосный.";
+      } else {
+        document.getElementById("результат").innerHTML = год + " год - не високосный.";
+      }
+    }
+  </script>
+
+</body>
+</html>
